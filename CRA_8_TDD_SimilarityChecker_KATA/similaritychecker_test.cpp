@@ -8,3 +8,4 @@ TEST(Similaritycheck, CaseForSameLength)
 
 	EXPECT_EQ(60, retPoint);
 }
+

@@ -5,20 +5,21 @@ using std::string;
 class SimilarChecker
 {
 public:
-	SimilarChecker(string string1st, string string2nd) 
-		: targetFirst{ string1st }, targetSecond{string2nd} {
-	
+	SimilarChecker(string string1st, string string2nd)
+		: targetFirst{ string1st }, targetSecond{ string2nd } {
+
 	}
 
 	int getLenthPoint()
 	{
 		if (targetFirst.length() == targetSecond.length())
 		{
-			return 60;
+			return MAX_LENGTH_POINT;
 		}
 	}
 
 private:
-	string& targetFirst;
-	string& targetSecond;
+	static const int MAX_LENGTH_POINT = 60;
+	string targetFirst;
+	string targetSecond;
 };
