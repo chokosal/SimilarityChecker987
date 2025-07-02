@@ -1,7 +1,10 @@
 #include "gmock/gmock.h"
 #include "similaritychecker.cpp"
 
-TEST(Similaritycheck, TC1)
+TEST(Similaritycheck, CaseForSameLength)
 {
-	EXPECT_EQ(1, 1);
+	SimilarChecker simChecker{ "abc", "abc" };
+	int retPoint = simChecker.getLenthPoint();
+
+	EXPECT_EQ(60, retPoint);
 }
