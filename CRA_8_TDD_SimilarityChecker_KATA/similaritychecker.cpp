@@ -12,10 +12,15 @@ public:
 
 	int getLenthPoint()
 	{
-		if (targetFirst.length() == targetSecond.length())
+		int retPoint = 0;
+		if (targetFirst.length() == targetSecond.length())	return MAX_LENGTH_POINT;
+		
+		if (targetFirst.length() > targetSecond.length())
 		{
-			return MAX_LENGTH_POINT;
+			return 0;
 		}
+		
+		return retPoint;
 	}
 
 private:
