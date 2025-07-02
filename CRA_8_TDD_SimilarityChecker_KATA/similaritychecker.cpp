@@ -22,6 +22,11 @@ public:
 		{
 			return 0;
 		}
+		else
+		{
+			int gap = longLength - shortLength;
+			retPoint = MAX_LENGTH_POINT - MAX_LENGTH_POINT * (gap) / shortLength;
+		}
 		
 		return retPoint;
 	}

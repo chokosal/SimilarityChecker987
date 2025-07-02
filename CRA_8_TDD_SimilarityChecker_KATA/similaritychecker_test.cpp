@@ -24,3 +24,19 @@ TEST(Similaritycheck, CaseForLargeDiffLength2)
 
 	EXPECT_EQ(0, retPoint);
 }
+
+TEST(Similaritycheck, CaseForSmallDiffLength1)
+{
+	SimilarChecker simChecker{ "adf", "zb" };
+	int retPoint = simChecker.getLenthPoint();
+
+	EXPECT_EQ(30, retPoint);
+}
+
+TEST(Similaritycheck, CaseForSmallDiffLength2)
+{
+	SimilarChecker simChecker{ "zxcv", "adfasdf" };
+	int retPoint = simChecker.getLenthPoint();
+
+	EXPECT_EQ(15, retPoint);
+}
