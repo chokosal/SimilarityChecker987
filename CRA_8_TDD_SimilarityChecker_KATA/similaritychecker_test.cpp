@@ -1,42 +1,41 @@
 #include "gmock/gmock.h"
 #include "similaritychecker.cpp"
 
-TEST(Similaritycheck, CaseForSameLength)
+using namespace testing;
+class LengthFixture : public Test
 {
-	SimilarChecker simChecker{ "abc", "abc" };
-	int retPoint = simChecker.getLenthPoint();
+public:
+	void CheckLengthPoint(int expected, string first, string second)
+	{
+		LengthChecker lengthChecker{ first, second };
+		int retPoint = lengthChecker.getLenthPoint();
 
-	EXPECT_EQ(60, retPoint);
+		EXPECT_EQ(expected, retPoint);
+	}
+};
+
+TEST_F(LengthFixture, CaseForSameLength)
+{
+	CheckLengthPoint(60, "abc", "abc");
 }
 
-TEST(Similaritycheck, CaseForLargeDiffLength1)
+TEST_F(LengthFixture, CaseForLargeDiffLength1)
 {
-	SimilarChecker simChecker{ "ab", "fcde" };
-	int retPoint = simChecker.getLenthPoint();
-
-	EXPECT_EQ(0, retPoint);
+	CheckLengthPoint(0, "ab", "fcde");
 }
 
-TEST(Similaritycheck, CaseForLargeDiffLength2)
+TEST_F(LengthFixture, CaseForLargeDiffLength2)
 {
-	SimilarChecker simChecker{ "adfg", "z" };
-	int retPoint = simChecker.getLenthPoint();
-
-	EXPECT_EQ(0, retPoint);
+	CheckLengthPoint(0, "adfg", "z");
 }
 
-TEST(Similaritycheck, CaseForSmallDiffLength1)
+TEST_F(LengthFixture, CaseForSmallDiffLength1)
 {
-	SimilarChecker simChecker{ "adf", "zb" };
-	int retPoint = simChecker.getLenthPoint();
+	CheckLengthPoint(30, "adf", "zb");
 
-	EXPECT_EQ(30, retPoint);
 }
 
-TEST(Similaritycheck, CaseForSmallDiffLength2)
+TEST_F(LengthFixture, CaseForSmallDiffLength2)
 {
-	SimilarChecker simChecker{ "zxcv", "adfasdf" };
-	int retPoint = simChecker.getLenthPoint();
-
-	EXPECT_EQ(15, retPoint);
+	CheckLengthPoint(15, "zxcv", "adfasdf");
 }

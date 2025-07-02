@@ -2,10 +2,10 @@
 
 using std::string;
 
-class SimilarChecker
+class LengthChecker
 {
 public:
-	SimilarChecker(string string1st, string string2nd)
+	LengthChecker(string string1st, string string2nd)
 		: targetFirst{ string1st }, targetSecond{ string2nd } {
 
 	}
@@ -13,22 +13,33 @@ public:
 	int getLenthPoint()
 	{
 		int retPoint = 0;
-		if (targetFirst.length() == targetSecond.length())	return MAX_LENGTH_POINT;
-		
+		if (IsMaxPointCondition())	return MAX_LENGTH_POINT;
+
 		int longLength = (targetFirst.length() > targetSecond.length()) ? targetFirst.length() : targetSecond.length();
 		int shortLength = (targetFirst.length() > targetSecond.length()) ? targetSecond.length() : targetFirst.length();
 
-		if (longLength >= shortLength * FAIL_LENGTH_DIFF_MULTIPLE)
-		{
-			return 0;
-		}
-		else
-		{
-			int gap = longLength - shortLength;
-			retPoint = MAX_LENGTH_POINT - MAX_LENGTH_POINT * (gap) / shortLength;
-		}
+		if (IsZeroPointCondition(longLength, shortLength))	return 0;
+		
+		retPoint = getPartialPoint(longLength, shortLength);
+		
 		
 		return retPoint;
+	}
+
+	int getPartialPoint(int longLength, int shortLength)
+	{
+		int gap = longLength - shortLength;
+		return MAX_LENGTH_POINT - MAX_LENGTH_POINT * (gap) / shortLength;
+	}
+
+	bool IsZeroPointCondition(int longLength, int shortLength)
+	{
+		return longLength >= shortLength * FAIL_LENGTH_DIFF_MULTIPLE;
+	}
+
+	bool IsMaxPointCondition()
+	{
+		return targetFirst.length() == targetSecond.length();
 	}
 
 private:
