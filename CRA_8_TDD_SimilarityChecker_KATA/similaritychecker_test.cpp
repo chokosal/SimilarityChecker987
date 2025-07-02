@@ -39,3 +39,10 @@ TEST_F(LengthFixture, CaseForSmallDiffLength2)
 {
 	CheckLengthPoint(15, "zxcv", "adfasdf");
 }
+
+TEST(AlphaCheck, SameAlphbet)
+{
+	AlphabetChecker alphaChecker("ASD", "DSA");
+	int retPoint = alphaChecker.getPoint();
+	EXPECT_EQ(40, retPoint);
+}
